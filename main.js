@@ -1,11 +1,5 @@
-import { Game } from './game.js';
-// Get the render target div
-var renderDiv = document.getElementById('renderDiv');
-// Check if renderDiv exists
-if (!renderDiv) {
-    console.error('Fatal Error: renderDiv element not found.');
-} else {
-    // Initialize the game with the render target
-    var game = new Game(renderDiv);
-// The game now initializes and starts automatically from its constructor.
+export async function startApp() {
+  await Tone.start(); // unlock audio
+  await navigator.mediaDevices.getUserMedia({ video: true }); // trigger camera prompt
+  // then run your existing setup & rendering code here
 }
