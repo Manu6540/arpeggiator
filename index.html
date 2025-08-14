@@ -1,48 +1,78 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Arpeggiator</title>
-        <link rel="stylesheet" href="styles.css">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arpeggiator</title>
+  <link rel="stylesheet" href="./styles.css">
 
-        <!-- Primary Meta Tags -->
-        <meta name="title" content="Arpeggiator">
-        <meta name="description" content="hand-controlled arp, drum machine, real-time visualizer">
+  <!-- Meta -->
+  <meta name="title" content="Arpeggiator">
+  <meta name="description" content="hand-controlled arp, drum machine, real-time visualizer">
 
-        <!-- Open Graph / Facebook -->
-        <meta property="og:type" content="website">
-        <meta property="og:url" content="https://github.com/Manu6540/arpeggiator.git/">
-        <meta property="og:title" content="Arpeggiator">
-        <meta property="og:description" content="hand-controlled arp, drum machine, real-time visualizer">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://manu6540.github.io/arpeggiator/">
+  <meta property="og:title" content="Arpeggiator">
+  <meta property="og:description" content="hand-controlled arp, drum machine, real-time visualizer">
 
-        <!-- Twitter -->
-        <meta property="twitter:card" content="summary_large_image">
-        <meta property="twitter:url" content="https://github.com/Manu6540/arpeggiator.git/">
-        <meta property="twitter:title" content="Arpeggiator">
-        <meta property="twitter:description" content="hand-controlled arp, drum machine, real-time visualizer">
-       
-        <script defer src="https://cloud.umami.is/script.js" data-website-id="eb59c81c-27cb-4e1d-9e8c-bfbe70c48cd9"></script>
-        <script type="importmap">
-            {
-                "imports": {
-                    "three": "https://esm.sh/three@0.161.0?dev",
-                    "three/": "https://esm.sh/three@0.161.0&dev/"
-                }
-            }
-        </script>
-    </head>
-    <body style="width: 100%; height: 100%; overflow: hidden; margin: 0;">
-        <div id="renderDiv" style="width: 100%; height: 100%; margin: 0;">
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://manu6540.github.io/arpeggiator/">
+  <meta property="twitter:title" content="Arpeggiator">
+  <meta property="twitter:description" content="hand-controlled arp, drum machine, real-time visualizer">
 
-            <span id="info-text">raise your hands to raise the roof</span>
+  <!-- Umami Analytics -->
+  <script defer src="https://cloud.umami.is/script.js" data-website-id="eb59c81c-27cb-4e1d-9e8c-bfbe70c48cd9"></script>
 
-            <div id="logo-container" class="text-box">
-                <span id="logo">🪬</span><br>
-                <a href="https://github.com/Manu6540/" target="_blank">GitHub codes here</a>
-            </div>
+  <!-- Three.js Import Map -->
+  <script type="importmap">
+    {
+      "imports": {
+        "three": "https://esm.sh/three@0.161.0?dev",
+        "three/": "https://esm.sh/three@0.161.0&dev/"
+      }
+    }
+  </script>
 
-        </div>
-        <script type="module" src="main.js"></script>
-    </body>
+  <style>
+    #startBtn {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      width: 220px;
+      height: 56px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body style="width: 100%; height: 100%; overflow: hidden; margin: 0;">
+  <div id="renderDiv" style="width: 100%; height: 100%; margin: 0;">
+    <span id="info-text">raise your hands to raise the roof</span>
+    <div id="logo-container" class="text-box">
+      <span id="logo">🪬</span><br>
+      <a href="https://github.com/Manu6540/" target="_blank">GitHub codes here</a>
+    </div>
+  </div>
+
+  <!-- Start Button -->
+  <button id="startBtn">Start</button>
+
+  <script type="module">
+    import { startApp } from './main.js';
+
+    const btn = document.getElementById('startBtn');
+    btn.addEventListener('click', async () => {
+      try {
+        await startApp(); // This will call Tone.start(), init camera, etc.
+        btn.remove();
+      } catch (e) {
+        alert("Error: " + e.message);
+      }
+    });
+  </script>
+</body>
 </html>
